@@ -9,29 +9,13 @@ import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
 import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import {
-    mainListItems,
-    secondaryListItems
-} from './listItems';
-
-function Copyright(props: any) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
+    mainListItems
+} from '@/libs/listItems';
+import {AccountPopover, CCard, Copyright} from "@/components";
 
 const drawerWidth: number = 240;
 
@@ -85,7 +69,10 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const mdTheme = createTheme();
 
-function DashboardContent() {
+interface DashboardContentProps{
+    children: React.ReactNode;
+}
+const Dashboard = ({ children }: DashboardContentProps) => {
     const [open, setOpen] = React.useState(true);
     const toggleDrawer = () => {
         setOpen(!open);
@@ -122,11 +109,7 @@ function DashboardContent() {
                         >
                             Dashboard
                         </Typography>
-                        <IconButton color="inherit">
-                            <Badge badgeContent={4} color="secondary">
-                                <NotificationsIcon />
-                            </Badge>
-                        </IconButton>
+                        <AccountPopover />
                     </Toolbar>
                 </AppBar>
                 <Drawer variant="permanent" open={open}>
@@ -145,8 +128,6 @@ function DashboardContent() {
                     <Divider />
                     <List component="nav">
                         {mainListItems}
-                        <Divider sx={{ my: 1 }} />
-                        {secondaryListItems}
                     </List>
                 </Drawer>
                 <Box
@@ -163,6 +144,9 @@ function DashboardContent() {
                 >
                     <Toolbar />
                     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+                        <CCard>
+                            {children}
+                        </CCard>
                         <Copyright sx={{ pt: 4 }} />
                     </Container>
                 </Box>
@@ -171,6 +155,4 @@ function DashboardContent() {
     );
 }
 
-export default function Dashboard() {
-    return <DashboardContent />;
-}
+export default Dashboard

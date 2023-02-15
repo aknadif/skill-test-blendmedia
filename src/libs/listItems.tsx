@@ -2,57 +2,50 @@ import * as React from 'react';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import ListSubheader from '@mui/material/ListSubheader';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PeopleIcon from '@mui/icons-material/People';
-import AssignmentIcon from '@mui/icons-material/Assignment';
+import {CLink} from "@/components";
 
+const data = [
+    {
+        id: 1,
+        name: "Dashboard",
+        icon: <DashboardIcon />,
+        link: "/dashboard/dashboards"
+    },
+    {
+        id: 2,
+        name: "Products",
+        icon: <ShoppingCartIcon />,
+        link: "/dashboard/products"
+    },
+    {
+        id: 3,
+        name: "Users",
+        icon: <PeopleIcon />,
+        link: "/dashboard/users"
+    },
+    {
+        id: 4,
+        name: "Account",
+        icon: <PeopleIcon />,
+        link: "/dashboard/account"
+    }
+];
 export const mainListItems = (
     <React.Fragment>
-        <ListItemButton>
-            <ListItemIcon>
-                <DashboardIcon />
-            </ListItemIcon>
-            <ListItemText primary="Dashboard" />
-        </ListItemButton>
-        <ListItemButton>
-            <ListItemIcon>
-                <ShoppingCartIcon />
-            </ListItemIcon>
-            <ListItemText primary="Products" />
-        </ListItemButton>
-        <ListItemButton>
-            <ListItemIcon>
-                <PeopleIcon />
-            </ListItemIcon>
-            <ListItemText primary="Users" />
-        </ListItemButton>
-    </React.Fragment>
-);
-
-export const secondaryListItems = (
-    <React.Fragment>
-        <ListSubheader component="div" inset>
-            Saved reports
-        </ListSubheader>
-        <ListItemButton>
-            <ListItemIcon>
-                <AssignmentIcon />
-            </ListItemIcon>
-            <ListItemText primary="Current month" />
-        </ListItemButton>
-        <ListItemButton>
-            <ListItemIcon>
-                <AssignmentIcon />
-            </ListItemIcon>
-            <ListItemText primary="Last quarter" />
-        </ListItemButton>
-        <ListItemButton>
-            <ListItemIcon>
-                <AssignmentIcon />
-            </ListItemIcon>
-            <ListItemText primary="Year-end sale" />
-        </ListItemButton>
+        {data.map((item, index) => (
+            <CLink
+                href={item.link}
+                key={index}>
+                <ListItemButton>
+                    <ListItemIcon>
+                        {item.icon}
+                    </ListItemIcon>
+                    <ListItemText primary={item.name} />
+                </ListItemButton>
+            </CLink>
+        ))}
     </React.Fragment>
 );

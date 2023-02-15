@@ -1,10 +1,11 @@
 import React from "react";
+import Dashboard from "@/layouts/Dashboard";
 
 const DashboardPage = () => {
     return (
-        <>
-        DashboardPage
-        </>
+        <Dashboard>
+            DashboardPage
+        </Dashboard>
     )
 }
 

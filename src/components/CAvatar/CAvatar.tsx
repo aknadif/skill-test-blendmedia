@@ -1,12 +1,17 @@
 import React from "react";
 import Avatar from '@mui/material/Avatar';
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
-const CAvatar = () => {
+interface CAvatarProps {
+    children?: React.ReactNode;
+}
+
+const CAvatar = ({
+    children,
+}: CAvatarProps) => {
     return (
         <>
             <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                <LockOutlinedIcon />
+                {children}
             </Avatar>
         </>
     )
